@@ -1,0 +1,104 @@
+@mixin center {
+	position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+@mixin eyelid {
+	position: absolute;
+  left: 25%;
+	color: #fff;
+	z-index: 1;
+	color: #455A64;
+}
+
+.frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 400px;
+  margin-top: -200px;
+  margin-left: -200px;
+  border-radius: 2px;
+	box-shadow: 4px 8px 16px 0 rgba(0,0,0,0.1);
+	overflow: hidden;
+  background: #455A64;
+  color: #333;
+	font-family: 'Open Sans', Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.center {
+ @include center;
+}
+
+.eye {
+	background-color: #CFD8DC;
+	width: 140px;
+	height: 140px;
+	border-radius: 95% 0%;
+	transform: rotate(45deg);
+	overflow: hidden;
+}
+
+.eyeball {
+	@include center;
+	width: 70%;
+	height: 70%;
+	background-color: #fff;
+	border-radius: 50%;
+	animation: watch 3s ease-out infinite;
+}
+
+.pupil {
+	width: 35%;
+	height: 35%;
+	background-color: #212121;
+	border-radius: 50%;
+	@include center;
+}
+
+.eyelidBottom {
+	@include eyelid;
+  top: 62%;
+	animation: eyelidBottom 3s infinite;
+}
+
+.eyelidTop {
+ @include eyelid;
+  top: 25%;
+	animation: eyelidTop 3s infinite ;
+}
+
+@keyframes watch {
+	0%, 50% ,100% {
+		transform: translate(-50%,-50%);
+	}
+	20% {
+		transform: translate(-60px, -17px);
+	}
+	40% {
+		transform: translate(-17px, -60px);
+	}
+}
+
+@keyframes eyelidBottom {
+	0%, 10%, 18%, 26%, 34%, 48%, 56%, 76%, 84% {
+		top: 62%;
+	}
+	14%, 30%, 52%, 80% {
+		top: 50%;
+	}
+}
+
+@keyframes eyelidTop {
+	0%, 10%, 18%, 26%, 34%, 48%, 56%, 76%, 84% {
+		top: 25%;
+	}
+	14%, 30%, 52%, 80% {
+		top: 38%;
+	}
+}

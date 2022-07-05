@@ -1,0 +1,179 @@
+@mixin center {
+	position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+@mixin transition {
+	transition: all 0.4s linear;
+}
+
+$side: 35px;
+
+$trSc: translateY(35px) scale(2);
+
+.frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 400px;
+  margin-top: -200px;
+  margin-left: -200px;
+  border-radius: 2px;
+	box-shadow: 4px 8px 16px 0 rgba(0,0,0,0.1);
+	overflow: hidden;
+  background: #B0BEC5;
+  color: #333;
+	font-family: 'Open Sans', Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.center {
+ @include center;
+}
+
+#click {
+	width: $side;
+	height: $side;
+	z-index: 1;
+	opacity: 0;
+	@include center;
+}
+
+#click:checked ~ .checkMe {
+		background: #fff;
+	}
+
+#click:checked ~ .dot {
+	opacity: 1;
+	animation: appear 0.2s ease-in-out;
+}
+
+#click:checked ~ .lines svg {
+	animation: flash 0.5s ease-in-out;
+}
+
+#click:checked ~ .lines svg:nth-of-type(1) {
+	transform: $trSc;
+	@include transition;
+}
+
+#click:checked ~ .lines svg:nth-of-type(2) {
+	transform: rotate(45deg) $trSc;
+	@include transition;
+}
+
+#click:checked ~ .lines svg:nth-of-type(3) {
+	transform: rotate(90deg) $trSc;
+	@include transition;
+}
+
+#click:checked ~ .lines svg:nth-of-type(4) {
+	transform: rotate(135deg) $trSc;
+	@include transition;
+}
+
+#click:checked ~ .lines svg:nth-of-type(5) {
+	transform: rotate(180deg) $trSc;
+	@include transition;
+}
+
+#click:checked ~ .lines svg:nth-of-type(6) {
+	transform: rotate(225deg) $trSc;
+	@include transition;
+}
+
+#click:checked ~ .lines svg:nth-of-type(7) {
+	transform: rotate(270deg) $trSc;
+	@include transition;
+}
+
+#click:checked ~ .lines svg:nth-of-type(8) {
+	transform: rotate(315deg) $trSc;
+	@include transition;
+}
+
+.checkMe {
+	width: $side;
+	height: $side;
+	border-radius: 50%;
+	border: 3px #fff solid;
+	@include center
+}
+
+.dot {
+	width: 10px;
+	height: 10px;
+	background: #7CB342;
+	border-radius: 50%;
+	opacity: 0;
+	@include center;
+}
+
+.lines {
+	width: fit-content;
+}
+
+svg {
+	width: 10px;
+	height: 10px;
+	position: absolute;
+	transform-origin: top left;
+	opacity: 0;
+
+	&:nth-of-type(2) {
+		transform: rotate(45deg);
+	}
+
+	&:nth-of-type(3) {
+		transform: rotate(90deg);
+	}
+
+	&:nth-of-type(4) {
+		transform: rotate(135deg);
+	}
+
+	&:nth-of-type(5) {
+		transform: rotate(180deg);
+	}
+
+	&:nth-of-type(6) {
+		transform: rotate(225deg);
+	}
+
+	&:nth-of-type(7) {
+		transform: rotate(270deg);
+	}
+
+	&:nth-of-type(8) {
+		transform: rotate(315deg);
+	}
+}
+
+line {
+ stroke-width: 1;
+ stroke: #fff;
+}
+
+@keyframes appear {
+	from {
+		width: 20px;
+		height: 20px;
+	}
+	to {
+		width: 10px;
+		height: 10px;
+	}
+}
+
+@keyframes flash {
+	0%, 100% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+}
